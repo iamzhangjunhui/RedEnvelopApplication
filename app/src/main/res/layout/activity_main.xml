@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.kaylee.redenvelopapplication.MainActivity">
+
+    <TextView
+        android:id="@+id/txt"
+        android:clickable="true"
+        android:onClick="setting"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:gravity="center"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:textSize="16sp"
+        android:text="开/关闭 自动抢红包功能"
+        android:textColor="#fff"
+        android:background="@drawable/background"
+        android:layout_marginTop="54dp"
+       />
+
+</LinearLayout>
