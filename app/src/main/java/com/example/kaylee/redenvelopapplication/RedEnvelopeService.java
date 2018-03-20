@@ -31,9 +31,9 @@ public class RedEnvelopeService extends AccessibilityService {
             case AccessibilityEvent.TYPE_WINDOW_STATE_CHANGED:
             case AccessibilityEvent.TYPE_WINDOW_CONTENT_CHANGED:
                 String className = event.getClassName().toString();
-                if (className.equals("com.tencent.mm.ui.LauncherUI") || className.equals("android.widget.ListView")) {
+                if (className.equals("com.tencent.mm.ui.LauncherUI") || className.equals("android.widget.ListView")||className.equals("android.widget.TextView")) {
                     getPacket();
-                } else if (className.equals("com.tencent.mm.plugin.luckymoney.ui.LuckyMoneyReceiveUI")) {
+                } else if (className.equals("com.tencent.mm.plugin.luckymoney.ui.LuckyMoneyReceiveUI")||className.equals("android.widget.FrameLayout")) {
                     openPacket();
                 } else if (className.equals("com.tencent.mm.plugin.luckymoney.ui.LuckyMoneyDetailUI")) {
                     close();
@@ -101,9 +101,14 @@ public class RedEnvelopeService extends AccessibilityService {
         AccessibilityNodeInfo nodeInfo = getRootInActiveWindow();
         if (nodeInfo != null) {
             //为了演示,直接查看了红包控件的id
-            List<AccessibilityNodeInfo> list = nodeInfo.findAccessibilityNodeInfosByViewId("com.tencent.mm:id/c4q");
+            //这里兼容不同手机的开红包控件的id不一样
+            List<AccessibilityNodeInfo> list = nodeInfo.findAccessibilityNodeInfosByViewId("com.tencent.mm:id/c4j");
+            List<AccessibilityNodeInfo> list2 =nodeInfo.findAccessibilityNodeInfosByViewId("com.tencent.mm:id/c4q");
             nodeInfo.recycle();
             for (AccessibilityNodeInfo item : list) {
+                item.performAction(AccessibilityNodeInfo.ACTION_CLICK);
+            }
+            for (AccessibilityNodeInfo item : list2) {
                 item.performAction(AccessibilityNodeInfo.ACTION_CLICK);
             }
         }
